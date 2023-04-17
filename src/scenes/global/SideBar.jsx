@@ -5,25 +5,27 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import logo from "/LogoERAS.png"
 
 import "react-pro-sidebar/dist/css/styles.css";
+import { mockDataMenu } from "../../data/mockDataMenu";
+
+
+const iconComp = {
+  "HomeOutlinedIcon": <HomeOutlinedIcon />,
+  "PieChartOutlineOutlinedIcon": <PieChartOutlineOutlinedIcon />,
+  "CalendarMonthIcon": <CalendarMonthIcon />
+}
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+
   return (
     <MenuItem
       active={selected === title}
@@ -31,7 +33,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
         color: colors.grey[100],
       }}
       onClick={() => setSelected(title)}
-      icon={icon}
+      icon={iconComp[icon]}
     >
       <Typography>{title}</Typography>
       <Link to={to} />
@@ -123,8 +125,44 @@ export const SideBar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} sx={{ cursor: 'default', userSelect: 'none' }}>
 
-            {/* MENU DINAMICO */} 
-            
+            {/* MENU DINAMICO */}
+            {
+              mockDataMenu.map((item) =>
+                item.subItems ? (
+                  <SubMenu
+                    key={item.id}
+                    title={item.title}
+                    icon={iconComp[item.icon]}
+                    style={{
+                      cursor: 'default',
+                      userSelect: 'none',
+                      color: colors.grey[100],
+                    }}
+                  >
+                    {item.subItems.map((subitem) => (
+                      <Item
+                        key={subitem.id}
+                        title={subitem.title}
+                        to={subitem.to}
+                        icon={subitem.icon}
+                        selected={selected}
+                        setSelected={setSelected} />
+                    ))}
+                  </SubMenu>
+                )
+                  : (<Item
+                    key={item.id}
+                    title={item.title}
+                    to={item.to}
+                    icon={item.icon}
+                    selected={selected}
+                    setSelected={setSelected}
+                  />
+                  )
+              )
+            }
+
+            {/*
             <Item
               title="Dashboard"
               to="/"
@@ -156,21 +194,8 @@ export const SideBar = () => {
                 selected={selected}
                 setSelected={setSelected}
               />
-            </SubMenu>
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
-            <Item
-              title="Contabilidad"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            </SubMenu> */}
+
           </Box>
         </Menu>
       </ProSidebar>
