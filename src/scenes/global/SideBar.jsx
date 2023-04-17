@@ -38,6 +38,26 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
+const SubItem = ({ title, icon, selected, setSelected, children }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  return (
+    <SubMenu
+      active={selected === title}
+      style={{
+        color: colors.grey[100],
+      }}
+      onClick={() => setSelected(title)}
+      title={title}
+      icon={icon}
+    >
+      {
+        children
+      }
+    </SubMenu>
+  );
+};
+
 export const SideBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -53,9 +73,7 @@ export const SideBar = () => {
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
-        },
+
         "& .pro-inner-item:hover": {
           color: "#868dfb !important",
         },
@@ -129,29 +147,27 @@ export const SideBar = () => {
               setSelected={setSelected}
             />
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+            <SubItem
+              title="Data"
+              to="/"
+              icon={<PieChartOutlineOutlinedIcon/>}
+              selected={selected}
+              setSelected={setSelected}
             >
-              Data
-            </Typography>
-            <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <SubMenu title="Hola mundo">
+              <Item
+                title="Manage Team"
+                to="/team"
+                icon={<PeopleOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="Contacts Information"
+                to="/contacts"
+                icon={<ContactsOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
               <Item
                 title="Invoices Balances"
                 to="/invoices"
@@ -159,16 +175,7 @@ export const SideBar = () => {
                 selected={selected}
                 setSelected={setSelected}
               />
-              <SubMenu title="Jaja">
-                <Item
-                  title="Invoices s"
-                  to="/ajaj"
-                  icon={<ReceiptOutlinedIcon />}
-                  selected={selected}
-                  setSelected={setSelected}
-                />
-              </SubMenu>
-            </SubMenu>
+            </SubItem>
 
             <Typography
               variant="h6"
