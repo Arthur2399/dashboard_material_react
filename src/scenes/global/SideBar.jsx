@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 
@@ -64,6 +64,7 @@ export const SideBar = () => {
         },
       }}
     >
+
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
@@ -100,7 +101,7 @@ export const SideBar = () => {
                   width="100px"
                   height="100px"
                   src={`http://192.168.194.52:85/media/usuarios/yojjwkska.jpeg`}
-                  style={{ cursor: "pointer", borderRadius: "50%", objectFit:"cover" }}
+                  style={{ cursor: "pointer", borderRadius: "50%", objectFit: "cover" }}
                 />
               </Box>
               <Box textAlign="center">
@@ -110,10 +111,10 @@ export const SideBar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  Arthur Chávez
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  Ing.Sistemas
                 </Typography>
               </Box>
             </Box>
@@ -149,13 +150,25 @@ export const SideBar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+
+            <SubMenu title="Hola mundo">
+              <Item
+                title="Invoices Balances"
+                to="/invoices"
+                icon={<ReceiptOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <SubMenu title="Jaja">
+                <Item
+                  title="Invoices s"
+                  to="/ajaj"
+                  icon={<ReceiptOutlinedIcon />}
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+              </SubMenu>
+            </SubMenu>
 
             <Typography
               variant="h6"
