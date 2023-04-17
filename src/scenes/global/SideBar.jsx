@@ -100,7 +100,7 @@ export const SideBar = () => {
                   width="100px"
                   height="100px"
                   src={`http://192.168.194.52:85/media/usuarios/yojjwkska.jpeg`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                  style={{ cursor: "pointer", borderRadius: "50%", objectFit:"cover" }}
                 />
               </Box>
               <Box textAlign="center">
