@@ -122,6 +122,9 @@ export const SideBar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} sx={{ cursor: 'default', userSelect: 'none' }}>
+
+            {/* MENU DINAMICO */} 
+            
             <Item
               title="Dashboard"
               to="/"

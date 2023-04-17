@@ -12,35 +12,15 @@ export const mockDataMenu = [
                 to: "/team",
                 icon: "PeopleOutlinedIcon",
             },
-            {
-                title: "Contacts Information",
-                to: "/contacts",
-                icon: "ContactsOutlinedIcon",
-            },
-            {
-                title: "Invoices Balances",
-                to: "/invoices",
-                icon: "ReceiptOutlinedIcon",
-            },
         ]
     },
     {
-        titleGroup: "Pages",
+        titleGroup: "Horarios",
         items: [
-            {
-                title: "Profile Form",
-                to: "/form",
-                icon: "PersonOutlinedIcon",
-            },
             {
                 title: "Calendar",
                 to: "/calendar",
                 icon: "CalendarTodayOutlinedIcon",
-            },
-            {
-                title: "FAQ Page",
-                to: "/faq",
-                icon: "HelpOutlineOutlinedIcon",
                 subitem: [
                     {
                         title: "Day",
@@ -56,16 +36,14 @@ export const mockDataMenu = [
                         title: "Month",
                         to: "/month",
                         icon: "CalendarTodayOutlinedIcon",
-                        subitem: [
-                            {
-                                title: "Bimester",
-                                to: "/bimester",
-                                icon: "CalendarTodayOutlinedIcon",
-                            },
-                        ]
                     },
                 ]
             },
+            {
+                title: "Agenda",
+                to: "/agent",
+                icon: "CalendarTodayOutlinedIcon",
+            }
         ]
     }
 ]
