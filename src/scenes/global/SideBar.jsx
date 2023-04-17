@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import logo from "/LogoERAS.png"
 
 import "react-pro-sidebar/dist/css/styles.css";
 
@@ -38,26 +39,6 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const SubItem = ({ title, icon, selected, setSelected, children }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  return (
-    <SubMenu
-      active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
-      onClick={() => setSelected(title)}
-      title={title}
-      icon={icon}
-    >
-      {
-        children
-      }
-    </SubMenu>
-  );
-};
-
 export const SideBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -73,7 +54,6 @@ export const SideBar = () => {
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
-
         "& .pro-inner-item:hover": {
           color: "#868dfb !important",
         },
@@ -101,9 +81,11 @@ export const SideBar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
-                </Typography>
+                <img
+                  src={logo}
+                  alt="logo"
+                  style={{ width: "100px" }}
+                />
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
@@ -147,12 +129,13 @@ export const SideBar = () => {
               setSelected={setSelected}
             />
 
-            <SubItem
+            <SubMenu
               title="Data"
-              to="/"
-              icon={<PieChartOutlineOutlinedIcon/>}
-              selected={selected}
-              setSelected={setSelected}
+              icon={<PieChartOutlineOutlinedIcon />}
+              style={{
+                cursor: 'default',
+                userSelect: 'none',
+              }}
             >
               <Item
                 title="Manage Team"
@@ -175,7 +158,7 @@ export const SideBar = () => {
                 selected={selected}
                 setSelected={setSelected}
               />
-            </SubItem>
+            </SubMenu>
 
             <Typography
               variant="h6"
