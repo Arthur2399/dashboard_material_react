@@ -150,27 +150,29 @@ export const SideBar = () => {
                     ))}
                   </SubMenu>
                 )
-                  : (<Item
-                    key={item.id}
-                    title={item.title}
-                    to={item.to}
-                    icon={item.icon}
-                    selected={selected}
-                    setSelected={setSelected}
-                  />
+                  : item.titleGroup ? (
+                    <Typography
+                      variant="h6"
+                      color={colors.grey[300]}
+                      sx={{ m: "15px 0 5px 20px" }}
+                    >
+                      {item.titleGroup}
+                    </Typography>
                   )
+
+                    : (<Item
+                      key={item.id}
+                      title={item.title}
+                      to={item.to}
+                      icon={item.icon}
+                      selected={selected}
+                      setSelected={setSelected}
+                    />
+                    )
               )
             }
 
             {/*
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -178,23 +180,7 @@ export const SideBar = () => {
             >
               Data
             </Typography>
-            <SubMenu
-              title="Data"
-              icon={<PieChartOutlineOutlinedIcon />}
-              style={{
-                cursor: 'default',
-                userSelect: 'none',
-                color: colors.grey[100],
-              }}
-            >
-              <Item
-                title="Manage Team"
-                to="/team"
-                icon={<PeopleOutlinedIcon />}
-                selected={selected}
-                setSelected={setSelected}
-              />
-            </SubMenu> */}
+            */}
 
           </Box>
         </Menu>

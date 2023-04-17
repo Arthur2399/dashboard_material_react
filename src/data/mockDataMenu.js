@@ -1,18 +1,22 @@
 export const mockDataMenu = [
     {
         id:1,
-        title: "Dasboard",
+        title: "Inicio",
         to: "/",
         icon: "HomeOutlinedIcon",
     },
     {
         id:2,
+        titleGroup: "Administración",
+    },
+    {
+        id:3,
         title: "Empleados",
         to: "/employes",
         icon: "PieChartOutlineOutlinedIcon",
     },
     {
-        id:3,
+        id:4,
         title: "Agenda",
         to: "/calendar",
         icon: "CalendarMonthIcon",
@@ -34,49 +38,31 @@ export const mockDataMenu = [
                 title: "Month",
                 to: "/month",
                 icon: "CalendarMonthIcon",
-            },
-        ]
-    },
-    /* {
-        titleGroup: "Data",
-        items: [
-            {
-                title: "Manage Team",
-                to: "/team",
-                icon: "PeopleOutlinedIcon",
+                subItems:[
+                    {
+                        id:1,
+                        title: "Day",
+                        to: "/day",
+                        icon: "CalendarMonthIcon",
+                    },
+                ]
             },
         ]
     },
     {
-        titleGroup: "Horarios",
-        items: [
-            {
-                title: "Calendar",
-                to: "/calendar",
-                icon: "CalendarTodayOutlinedIcon",
-                subitem: [
-                    {
-                        title: "Day",
-                        to: "/day",
-                        icon: "CalendarTodayOutlinedIcon",
-                    },
-                    {
-                        title: "Week",
-                        to: "/day",
-                        icon: "CalendarTodayOutlinedIcon",
-                    },
-                    {
-                        title: "Month",
-                        to: "/month",
-                        icon: "CalendarTodayOutlinedIcon",
-                    },
-                ]
-            },
-            {
-                title: "Agenda",
-                to: "/agent",
-                icon: "CalendarTodayOutlinedIcon",
-            }
-        ]
-    } */
+        id:5,
+        titleGroup: "Reportes",
+    },
+    {
+        id:6,
+        title: "Contabilidad",
+        to: "/",
+        icon: "PieChartOutlineOutlinedIcon",
+    },
+    {
+        id:7,
+        title: "Recursos humanos",
+        to: "/",
+        icon: "PieChartOutlineOutlinedIcon",
+    },
 ]
