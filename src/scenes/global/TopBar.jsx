@@ -9,7 +9,6 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 
-
 export const TopBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -21,6 +20,7 @@ export const TopBar = () => {
         display="flex"
         backgroundColor={colors.primary[400]}
         borderRadius="3px"
+        sx={{ cursor: 'default', userSelect: 'none', }}
       >
         <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Buscar..." />
         <IconButton type="button" sx={{ p: 1 }}>
@@ -45,7 +45,6 @@ export const TopBar = () => {
           <PersonOutlinedIcon />
         </IconButton>
       </Box>
-
     </Box>
   )
 }
