@@ -80,11 +80,12 @@ export const SideBar = () => {
                 justifyContent="space-between"
                 alignItems="center"
                 ml="15px"
+                sx={{ cursor: 'default', userSelect: 'none' }}
               >
                 <img
                   src={logo}
                   alt="logo"
-                  style={{ width: "100px" }}
+                  style={{ width: "140px" }}
                 />
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -95,18 +96,18 @@ export const SideBar = () => {
 
           {!isCollapsed && (
             <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
+              <Box display="flex" justifyContent="center" alignItems="center" sx={{ cursor: 'default', userSelect: 'none' }}>
                 <img
                   alt="profile-user"
                   width="100px"
                   height="100px"
                   src={`http://192.168.194.52:85/media/usuarios/yojjwkska.jpeg`}
-                  style={{ cursor: "pointer", borderRadius: "50%", objectFit: "cover" }}
+                  style={{ borderRadius: "50%", objectFit: "cover", userSelect: 'none' }}
                 />
               </Box>
-              <Box textAlign="center">
+              <Box textAlign="center" sx={{ cursor: 'default', userSelect: 'none' }}>
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
@@ -120,7 +121,7 @@ export const SideBar = () => {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box paddingLeft={isCollapsed ? undefined : "10%"} sx={{ cursor: 'default', userSelect: 'none' }}>
             <Item
               title="Dashboard"
               to="/"
@@ -162,20 +163,6 @@ export const SideBar = () => {
             </Typography>
             <Item
               title="Contabilidad"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Nómina"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Finanzas"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
