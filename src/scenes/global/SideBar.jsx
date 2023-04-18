@@ -152,6 +152,7 @@ export const SideBar = () => {
                 )
                   : item.titleGroup ? (
                     <Typography
+                      key={item.id}
                       variant="h6"
                       color={colors.grey[300]}
                       sx={{ m: "15px 0 5px 20px" }}
@@ -171,17 +172,6 @@ export const SideBar = () => {
                     )
               )
             }
-
-            {/*
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
-            */}
-
           </Box>
         </Menu>
       </ProSidebar>
