@@ -5,10 +5,10 @@ export const mockDataMenu = [
         to: "/",
         icon: "HomeOutlinedIcon",
     },
-    {
+/*     {
         id:2,
         titleGroup: "Administración",
-    },
+    }, */
     {
         id:3,
         title: "Empleados",
@@ -49,10 +49,10 @@ export const mockDataMenu = [
             },
         ]
     },
-    {
+/*     {
         id:5,
         titleGroup: "Reportes",
-    },
+    }, */
     {
         id:6,
         title: "Contabilidad",

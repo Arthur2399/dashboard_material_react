@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { mockDataMenu } from "../../data/mockDataMenu";
 import { tokens } from "../../theme";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -11,7 +12,6 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import logo from "/LogoERAS.png"
 
 import "react-pro-sidebar/dist/css/styles.css";
-import { mockDataMenu } from "../../data/mockDataMenu";
 
 
 const iconComp = {
@@ -20,12 +20,10 @@ const iconComp = {
   "CalendarMonthIcon": <CalendarMonthIcon />
 }
 
-
+/* ITEM */
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
-
   return (
     <MenuItem
       active={selected === title}
@@ -40,6 +38,33 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     </MenuItem>
   );
 };
+
+const RenderItem = ({ item }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  if (item.subItems) {
+    return (
+      <SubMenu
+        key={item.id}
+        title={item.title}
+        icon={iconComp[item.icon]}
+        style={{
+          cursor: 'default',
+          userSelect: 'none',
+          color: colors.grey[100],
+        }}
+      >
+        {item.subItems.map((subitem) => (
+          <RenderItem key={subitem.id} item={subitem} />
+        ))}
+      </SubMenu>
+    );
+  } else {
+    return (
+      <Item key={item.id} title={item.title} to={item.to} icon={item.icon} />
+    );
+  }
+}
 
 export const SideBar = () => {
   const theme = useTheme();
@@ -67,7 +92,6 @@ export const SideBar = () => {
 
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
-          {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
@@ -124,54 +148,9 @@ export const SideBar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} sx={{ cursor: 'default', userSelect: 'none' }}>
-
-            {/* MENU DINAMICO */}
-            {
-              mockDataMenu.map((item) =>
-                item.subItems ? (
-                  <SubMenu
-                    key={item.id}
-                    title={item.title}
-                    icon={iconComp[item.icon]}
-                    style={{
-                      cursor: 'default',
-                      userSelect: 'none',
-                      color: colors.grey[100],
-                    }}
-                  >
-                    {item.subItems.map((subitem) => (
-                      <Item
-                        key={subitem.id}
-                        title={subitem.title}
-                        to={subitem.to}
-                        icon={subitem.icon}
-                        selected={selected}
-                        setSelected={setSelected} />
-                    ))}
-                  </SubMenu>
-                )
-                  : item.titleGroup ? (
-                    <Typography
-                      key={item.id}
-                      variant="h6"
-                      color={colors.grey[300]}
-                      sx={{ m: "15px 0 5px 20px" }}
-                    >
-                      {item.titleGroup}
-                    </Typography>
-                  )
-
-                    : (<Item
-                      key={item.id}
-                      title={item.title}
-                      to={item.to}
-                      icon={item.icon}
-                      selected={selected}
-                      setSelected={setSelected}
-                    />
-                    )
-              )
-            }
+            {mockDataMenu.map((item) => (
+              <RenderItem key={item.id} item={item} />
+            ))}
           </Box>
         </Menu>
       </ProSidebar>
