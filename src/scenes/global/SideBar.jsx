@@ -39,7 +39,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const RenderItem = ({ item }) => {
+const RenderItem = ({ item, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   if (item.subItems) {
@@ -55,13 +55,13 @@ const RenderItem = ({ item }) => {
         }}
       >
         {item.subItems.map((subitem) => (
-          <RenderItem key={subitem.id} item={subitem} />
+          <RenderItem key={subitem.id} item={subitem} selected={selected} setSelected={setSelected} />
         ))}
       </SubMenu>
     );
   } else {
     return (
-      <Item key={item.id} title={item.title} to={item.to} icon={item.icon} />
+      <Item key={item.id} title={item.title} to={item.to} icon={item.icon} selected={selected} setSelected={setSelected} />
     );
   }
 }
@@ -70,7 +70,7 @@ export const SideBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("Inicio");
 
   return (
     <Box
@@ -149,7 +149,17 @@ export const SideBar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} sx={{ cursor: 'default', userSelect: 'none' }}>
             {mockDataMenu.map((item) => (
-              <RenderItem key={item.id} item={item} />
+              item.titleGroup ? (
+                <Typography
+                  key={item.id}
+                  variant="h6"
+                  color={colors.grey[300]}
+                  sx={{ m: "15px 0 5px 20px" }}
+                >
+                  {item.titleGroup}
+                </Typography>
+              )
+                : <RenderItem key={item.id} item={item} selected={selected} setSelected={setSelected} />
             ))}
           </Box>
         </Menu>
